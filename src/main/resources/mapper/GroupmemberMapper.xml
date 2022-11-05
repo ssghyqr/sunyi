@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sunyi.mapper.GroupmemberMapper">
+    <resultMap id="SelectGroupMember" type="com.example.sunyi.entity.DTO.SelectGroupMember">
+        <id property="groupId" column="groupId"></id>
+        <result property="userId" column="userId"></result>
+        <result property="userName" column="userName"></result>
+        <result property="userIntroduction" column="userIntroduction"></result>
+    </resultMap>
+    
+    <select id="getAllMember" resultMap="SelectGroupMember">
+        SELECT gp.groupId, gp.userId, u.userName, u.userIntroduction
+        FROM (usergroup as ug LEFT JOIN groupmember as gp ON ug.groupId = gp.groupId)
+            LEFT JOIN `user` AS u ON u.userId = gp.userId
+        WHERE ug.groupId = #{id}
+    </select>
+</mapper>

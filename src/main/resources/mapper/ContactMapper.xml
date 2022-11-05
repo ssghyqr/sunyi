@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sunyi.mapper.ContactMapper">
+    <resultMap id="SelectFriendList" type="com.example.sunyi.entity.DTO.SelectFriendList">
+        <id property="userId" column="userId"></id>
+        <result property="userName" column="userName"></result>
+    </resultMap>
+
+    <select id="friendList" resultMap="SelectFriendList">
+        SELECT u.userId, u.userName
+        FROM contact AS c LEFT JOIN `user` u ON c.friendId = u.userId
+        WHERE c.userId = #{id}
+    </select>
+</mapper>

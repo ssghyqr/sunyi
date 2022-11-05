@@ -20,22 +20,19 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@ApiModel(value = "User对象", description = "")
-public class User implements Serializable {
+@ApiModel(value = "Contact对象", description = "")
+public class Contact implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "userId", type = IdType.AUTO)
+    @TableId(value = "contactId", type = IdType.AUTO)
+    private Long contactId;
+
     private Long userId;
 
-    private String userAccount;
+    private Long friendId;
 
-    private String userPassword;
+    private Long recordGroupId;
 
-    private String userName;
-
-    private String userIntroduction;
-
-    private String userPhone;
 
 }
